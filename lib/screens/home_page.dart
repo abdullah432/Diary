@@ -11,7 +11,7 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
-  final PageController pageController = PageController(viewportFraction: 0.8);
+  final PageController pageController = PageController(viewportFraction: 0.7);
   int currentPage = 0;
   int count = 0;
   DatabaseHelper databaseHelper = DatabaseHelper();
@@ -46,6 +46,7 @@ class HomePageState extends State<HomePage> {
             if (currentIndex == 0) {
               return introductryPage();
             } else if (currentIndex == 1) {
+              return addNotePage();
             } else if (storyList.length >= currentIndex) {
               bool active = currentIndex == currentPage;
               return storyPages(storyList[currentIndex - 2], active);
@@ -111,5 +112,35 @@ class HomePageState extends State<HomePage> {
         ],
       ),
     );
+  }
+
+  Widget addNotePage() {
+    return Center(
+        child: Container(
+      height: 400,
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.blueAccent),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Icon(
+            Icons.add,
+            color: Colors.white,
+            size: 80,
+          ),
+          Container(
+            height: 15,
+          ),
+          Text(
+            "ADD TODAY'S STORY",
+            style: TextStyle(
+                color: Colors.white,
+                fontSize: 20,
+                fontFamily: 'Raleway',
+                fontWeight: FontWeight.w500),
+          ),
+        ],
+      ),
+    ));
   }
 }
