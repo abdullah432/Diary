@@ -23,6 +23,8 @@ dependencies:
   sqflite: any
   path_provider: any
   intl: ^0.16.0
+  date_format: ^1.0.8
+  flutter_datetime_picker: ^1.2.8
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -49,6 +51,7 @@ flutter:
   - images/forest.jpg
   - images/road.jpg
   - images/study.jpg
+  - images/logo.png
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -62,19 +65,19 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-fonts:
-  - family: Raleway
-    fonts:
-    - asset: fonts/Raleway-Bold.ttf
-      width: 700
-    - asset: fonts/Raleway-Regular.ttf
-    - asset: fonts/Raleway-Light.ttf
-      width: 300
-      style: italic
-  - family: Roboto
-    fonts:
-    - asset: fonts/Roboto-Regular.ttf
-    - asset: fonts/Roboto-Bold.ttf
+  fonts:
+    - family: Raleway
+      fonts:
+      - asset: fonts/Raleway-Bold.ttf
+        weight: 700
+      - asset: fonts/Raleway-Regular.ttf
+      - asset: fonts/Raleway-Light.ttf
+        weight: 300
+        style: italic
+    - family: Roboto
+      fonts:
+      - asset: fonts/Roboto-Regular.ttf
+      - asset: fonts/Roboto-Bold.ttf
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
