@@ -1,3 +1,4 @@
+import 'package:diary/model/ScaleRoute.dart';
 import 'package:diary/model/Story.dart';
 import 'package:diary/screens/add_story.dart';
 import 'package:diary/utils/database_helper.dart';
@@ -132,7 +133,7 @@ class HomePageState extends State<HomePage> {
     // final double w = active ? 300 : 240;
     if (!buttonDown) {
       height = active ? 380 : 350;
-      width = active ? 300 : 240;
+      width = active ? 300 : 250;
     }
 
     return Center(
@@ -199,36 +200,4 @@ class HomePageState extends State<HomePage> {
     Route route = ScaleRoute(page: AddStory());
     Navigator.push(context, route);
   }
-}
-
-class ScaleRoute extends PageRouteBuilder {
-  final Widget page;
-  ScaleRoute({this.page})
-      : super(
-          transitionDuration: Duration(milliseconds: 500),
-          pageBuilder: (
-            BuildContext context,
-            Animation<double> animation,
-            Animation<double> secondaryAnimation,
-          ) =>
-              page,
-          transitionsBuilder: (
-            BuildContext context,
-            Animation<double> animation,
-            Animation<double> secondaryAnimation,
-            Widget child,
-          ) =>
-              ScaleTransition(
-            scale: Tween<double>(
-              begin: 0.5,
-              end: 1.0,
-            ).animate(
-              CurvedAnimation(
-                parent: animation,
-                curve: Curves.fastOutSlowIn,
-              ),
-            ),
-            child: child,
-          ),
-        );
 }

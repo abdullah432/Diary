@@ -1,6 +1,10 @@
 import 'package:date_format/date_format.dart';
+import 'package:diary/model/EnterExitRoute.dart';
+import 'package:diary/model/PhotoHero.dart';
+import 'package:diary/screens/feeling.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
 class AddStory extends StatefulWidget {
@@ -15,6 +19,7 @@ class AddStoryState extends State<AddStory> {
   DateTime date = DateTime.now();
   @override
   Widget build(BuildContext context) {
+    timeDilation = 2.5;
     return Scaffold(
         body: SizedBox.expand(
             child: Container(
@@ -22,7 +27,7 @@ class AddStoryState extends State<AddStory> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Padding(
+          Hero(tag: 'cancel', child: Padding(
               padding: EdgeInsets.only(
                   top: minimumPadding * 8, right: minimumPadding * 4),
               child: Align(
@@ -33,11 +38,15 @@ class AddStoryState extends State<AddStory> {
                     onPressed: () {
                       moveToLastScreen();
                     }),
-              )),
-          getLogoImage(),
+              ))),
+          // Hero(tag: "logo", child: getLogoImage()),
+          PhotoHero(
+            photo: 'images/logo.png',
+            width: 80,
+          ),
           Text('Good (afternoon) (username)',
               style: TextStyle(
-                  fontSize: 22, color: Colors.white, fontFamily: 'Raleway')),
+                  fontSize: 22, color: Colors.white, fontFamily: 'Raleway', fontWeight: FontWeight.w500)),
           Padding(
             padding: EdgeInsets.only(top: minimumPadding),
             child: Text('ready to create a new story?',
@@ -78,7 +87,12 @@ class AddStoryState extends State<AddStory> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
               color: Colors.white,
-              onPressed: () {},
+              onPressed: () {
+                // Route route = EnterExitRoute(
+                //     exitPage: AddStory(), enterPage: FeelingPage());
+                // Navigator.push(context, route);
+                Navigator.push(context, MaterialPageRoute(builder: (context) => FeelingPage()));
+              },
               child: Padding(
                 padding: EdgeInsets.only(
                     top: minimumPadding * 3,
@@ -88,10 +102,9 @@ class AddStoryState extends State<AddStory> {
                 child: Text(
                   'LETS DO IT!',
                   style: TextStyle(
-                    color: Colors.blueAccent,
-                    fontSize: 17,
-                    fontWeight: FontWeight.bold
-                  ),
+                      color: Colors.blueAccent,
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold),
                 ),
               ),
             ),
@@ -110,8 +123,7 @@ class AddStoryState extends State<AddStory> {
     );
     return Container(
       child: logo,
-      margin:
-          EdgeInsets.only(top: minimumPadding , bottom: minimumPadding * 5),
+      margin: EdgeInsets.only(top: minimumPadding, bottom: minimumPadding * 5),
     );
   }
 
