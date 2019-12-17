@@ -131,8 +131,8 @@ class HomePageState extends State<HomePage> {
     // final double h = active ? 390 : 370;
     // final double w = active ? 300 : 240;
     if (!buttonDown) {
-      height = active ? 380 : 370;
-      width = active ? 300 : 250;
+      height = active ? 380 : 350;
+      width = active ? 300 : 240;
     }
 
     return Center(
@@ -182,7 +182,7 @@ class HomePageState extends State<HomePage> {
 
   void addNewStoryBtnClick() {
     setState(() {
-      height = 370;
+      height = 350;
       width = 282;
       buttonDown = true;
     });
