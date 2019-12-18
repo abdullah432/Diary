@@ -1,4 +1,5 @@
 import 'package:diary/model/PhotoHero.dart';
+import 'package:diary/screens/reason.dart';
 import 'package:flutter/material.dart';
 
 class FeelingPage extends StatefulWidget {
@@ -54,7 +55,7 @@ class FeelingPageState extends State<FeelingPage> {
                 alignment: Alignment.topLeft,
                 child: Text(
                   'How was your day, today?',
-                  style: TextStyle(color: Colors.white, fontSize: 19.0),
+                  style: TextStyle(color: Colors.white, fontSize: 21.0),
                 ),
               )),
           Padding(
@@ -70,7 +71,7 @@ class FeelingPageState extends State<FeelingPage> {
                 setState(() => rating = newRating);
               },
               onChangeEnd: (double){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => ))
+                Navigator.push(context, MaterialPageRoute(builder: (context) => ReasonPage()));
               },
               // divisions: 2,
               activeColor: Colors.white,
