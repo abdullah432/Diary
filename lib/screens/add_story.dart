@@ -19,7 +19,7 @@ class AddStoryState extends State<AddStory> {
   DateTime date = DateTime.now();
   @override
   Widget build(BuildContext context) {
-    timeDilation = 2.5;
+    timeDilation = 3;
     return Scaffold(
         body: SizedBox.expand(
             child: Container(
@@ -40,9 +40,12 @@ class AddStoryState extends State<AddStory> {
                     }),
               ))),
           // Hero(tag: "logo", child: getLogoImage()),
-          PhotoHero(
-            photo: 'images/logo.png',
-            width: 80,
+          Padding(
+            padding: EdgeInsets.only(bottom: minimumPadding * 4),
+            child: PhotoHero(
+              photo: 'images/logo.png',
+              width: 80,
+            ),
           ),
           Text('Good (afternoon) (username)',
               style: TextStyle(
