@@ -1,4 +1,5 @@
 import 'package:diary/model/PhotoHero.dart';
+import 'package:diary/screens/note.dart';
 import 'package:flutter/material.dart';
 
 class ReasonPage extends StatefulWidget {
@@ -10,10 +11,28 @@ class ReasonPage extends StatefulWidget {
 
 class ReasonPageState extends State<ReasonPage> {
   final minimumPadding = 5.0;
-  final reasonsArrayTxt = ["Realationship","Work","Family","Traveling",
-  "Food","Education","Exercise","Friends","Others"];
-    final reasonsArrayIcon = [Icons.add,Icons.work,Icons.home,Icons.local_airport,
-  Icons.fastfood,Icons.edit,Icons.explore,Icons.child_friendly,Icons.more_horiz];
+  final reasonsArrayTxt = [
+    "Realationship",
+    "Work",
+    "Family",
+    "Traveling",
+    "Food",
+    "Education",
+    "Exercise",
+    "Friends",
+    "Others"
+  ];
+  final reasonsArrayIcon = [
+    Icons.add,
+    Icons.work,
+    Icons.home,
+    Icons.local_airport,
+    Icons.fastfood,
+    Icons.edit,
+    Icons.explore,
+    Icons.child_friendly,
+    Icons.more_horiz
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -51,29 +70,48 @@ class ReasonPageState extends State<ReasonPage> {
           ),
           Padding(
               padding: EdgeInsets.only(
-                  top: minimumPadding * 4, left: minimumPadding * 4, bottom: minimumPadding * 4),
+                  top: minimumPadding * 4,
+                  left: minimumPadding * 4,
+                  bottom: minimumPadding * 4),
               child: Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  'Nice - what made today super awesome?',
+                  'Nice - what made today (super awesome)?',
                   style: TextStyle(color: Colors.white, fontSize: 21.0),
                 ),
               )),
-              Expanded(child: GridView.count(
-                childAspectRatio: (80 / 60), //(itemWidth/itemHeight)
-                crossAxisCount: 3,
-                scrollDirection: Axis.vertical,
-                primary: false,
-                children: List.generate(reasonsArrayTxt.length, (index){
-                  return FlatButton(child: Column(children: <Widget>[
-                    Icon(reasonsArrayIcon[index], size: 30, color: Colors.white,),
-                    Padding(
-                      padding: EdgeInsets.only(top: minimumPadding * 2),
-                      child: Text(reasonsArrayTxt[index], style: TextStyle(color: Colors.white),),
-                    ),
-                  ],), onPressed: () {},);
-                }),
-              ),)
+          Expanded(
+            child: GridView.count(
+              childAspectRatio: (55 / 40), //(itemWidth/itemHeight)
+              crossAxisCount: 3,
+              scrollDirection: Axis.vertical,
+              primary: false,
+              children: List.generate(reasonsArrayTxt.length, (index) {
+                return FlatButton(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Icon(
+                        reasonsArrayIcon[index],
+                        size: 30,
+                        color: Colors.white,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top: minimumPadding * 2),
+                        child: Text(
+                          reasonsArrayTxt[index],
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ),
+                    ],
+                  ),
+                  onPressed: () {
+                    navigateToNextPage();
+                  },
+                );
+              }),
+            ),
+          )
         ],
       ),
     )));
@@ -96,5 +134,9 @@ class ReasonPageState extends State<ReasonPage> {
 
   void moveToLastScreen() {
     Navigator.pop(context);
+  }
+
+  void navigateToNextPage() {
+    Navigator.push(context, MaterialPageRoute(builder: (context) => Note()));
   }
 }

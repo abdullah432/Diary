@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
       title: 'Diary',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        cursorColor: Colors.white54,
       ),
       home: HomePage(),
     );
