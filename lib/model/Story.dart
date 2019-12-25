@@ -1,18 +1,24 @@
 class Story {
   int _id;
+  String _title;
   String _date;
   String _feeling;
   String _reason;
   String _note;
 
-  Story(this._date, this._feeling, this._reason, [this._note]);
-  Story.withID(this._date, this._feeling, this._reason, [this._note]);
+  Story(this._title, this._date, this._feeling, this._reason, [this._note]);
+  Story.withID(this._title, this._date, this._feeling, this._reason, [this._note]);
 
   int get id => this._id;
+  String get title => this._title;
   String get date => this._date;
   String get feeling => this._feeling;
   String get reason => this._reason;
   String get note => this._note;
+
+  set title(String title){
+    this._title = title;
+  }
 
   set date(String date) {
     this._date = date;
@@ -35,6 +41,7 @@ class Story {
     var map = Map<String, dynamic>();
     if (_id != null)
       map['id'] = _id;
+    map['title'] = _title;
     map['date'] = _date;
     map['feeling'] = _feeling;
     map['reason'] = _reason;
@@ -46,6 +53,7 @@ class Story {
   //Convert Map object to Story object
   Story.fromMapObject(Map<String, dynamic> map){
     _id = map['id'];
+    _title = map['title'];
     _date = map['date'];
     _feeling = map['feeling'];
     _reason = map['reason'];

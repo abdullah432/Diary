@@ -11,6 +11,7 @@ class DatabaseHelper {
 
   String storyTable = 'storyTable';
   String colId = 'id';
+  String colTitle = 'title';
   String colDate = 'date';
   String colFeeling = 'feeling';
   String colReason = 'reason';
@@ -47,7 +48,7 @@ class DatabaseHelper {
   void createDb(Database db, int newVersion) async {
     await db.execute(
         'CREATE TABLE $storyTable($colId INTEGER PRIMARY KEY AUTOINCREMENT,'
-        '$colDate TEXT,$colFeeling Text, $colReason INTEGER, $colNote TEXT)');
+        '$colTitle TEXT,$colDate TEXT,$colFeeling Text, $colReason INTEGER, $colNote TEXT)');
   }
 
   //Fetch operation. Get all note object from database
@@ -62,12 +63,12 @@ class DatabaseHelper {
   }
 
   //Insert Operation
-  Future<int> insertStory(Story note) async {
+  Future<int> insertStory(Story story) async {
     //get refrence to database
     Database db = await this.database;
 
     //first convert note object into map
-    var result = await db.insert(storyTable, note.toMap());
+    var result = await db.insert(storyTable, story.toMap());
     return result;
   }
 

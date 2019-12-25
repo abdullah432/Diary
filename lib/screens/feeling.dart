@@ -1,3 +1,4 @@
+import 'package:diary/model/GlobalData.dart';
 import 'package:diary/model/PhotoHero.dart';
 import 'package:diary/screens/reason.dart';
 import 'package:flutter/material.dart';
@@ -72,6 +73,7 @@ class FeelingPageState extends State<FeelingPage> {
               },
               onChangeEnd: (double){
                 Navigator.push(context, MaterialPageRoute(builder: (context) => ReasonPage()));
+                GlobalData.feeling = feeling;
               },
               // divisions: 2,
               activeColor: Colors.white,

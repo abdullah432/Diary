@@ -1,4 +1,6 @@
+import 'package:diary/model/GlobalData.dart';
 import 'package:diary/model/PhotoHero.dart';
+import 'package:diary/screens/saveStory.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +15,9 @@ class NoteState extends State<Note> {
   double minimumPadding = 5.0;
   bool buttonVisibility = true;
   bool textBoxVisibility = false;
+
+  TextEditingController noteController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,20 +108,41 @@ class NoteState extends State<Note> {
                   )),
               Visibility(
                 visible: textBoxVisibility,
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                        left: minimumPadding * 5, right: minimumPadding * 4),
-                    child: TextField(                     
-                      maxLines: 15,
-                      decoration: InputDecoration(
-                        border: new OutlineInputBorder(
-                            borderSide: new BorderSide(color: Colors.teal)),
-                        hintStyle: TextStyle(color: Colors.white70),
-                        hintText: 'Today was (super awesome) because ...',
-                      ),
-                      style: TextStyle(color: Colors.white, fontSize: 15),),
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      left: minimumPadding * 5, right: minimumPadding * 4),
+                  child: TextField(
+                    controller: noteController,
+                    maxLines: 15,
+                    decoration: InputDecoration(
+                      border: new OutlineInputBorder(
+                          borderSide: new BorderSide(color: Colors.teal)),
+                      hintStyle: TextStyle(color: Colors.white70),
+                      hintText: 'Today was (super awesome) because ...',
                     ),
-              )
+                    style: TextStyle(color: Colors.white, fontSize: 15),
+                    onChanged: (value){
+                      GlobalData.note = noteController.text;
+                    },
+                  ),
+                ),
+              ),
+              Padding(
+                  padding: EdgeInsets.only(top: minimumPadding * 3),
+                  child: Align(
+                    alignment: Alignment.topRight,
+                    child: FlatButton(
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => SaveStory()));
+                        },
+                        child: RotatedBox(
+                          quarterTurns: 1,
+                          child: Icon(
+                              Icons.navigate_next,
+                              size: 40.0,
+                              color: Colors.white,
+                            ),),
+                  )))
             ],
           ),
         )));

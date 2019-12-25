@@ -1,3 +1,4 @@
+import 'package:diary/model/GlobalData.dart';
 import 'package:diary/model/PhotoHero.dart';
 import 'package:diary/screens/note.dart';
 import 'package:flutter/material.dart';
@@ -107,6 +108,7 @@ class ReasonPageState extends State<ReasonPage> {
                   ),
                   onPressed: () {
                     navigateToNextPage();
+                    GlobalData.reason = reasonsArrayTxt[index];
                   },
                 );
               }),

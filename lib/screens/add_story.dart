@@ -1,5 +1,6 @@
 import 'package:date_format/date_format.dart';
 import 'package:diary/model/EnterExitRoute.dart';
+import 'package:diary/model/GlobalData.dart';
 import 'package:diary/model/PhotoHero.dart';
 import 'package:diary/screens/feeling.dart';
 import 'package:flutter/cupertino.dart';
@@ -95,6 +96,7 @@ class AddStoryState extends State<AddStory> {
                 //     exitPage: AddStory(), enterPage: FeelingPage());
                 // Navigator.push(context, route);
                 Navigator.push(context, MaterialPageRoute(builder: (context) => FeelingPage()));
+                GlobalData.date = this.date.toString();
               },
               child: Padding(
                 padding: EdgeInsets.only(
