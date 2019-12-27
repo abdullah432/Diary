@@ -2,7 +2,7 @@ import 'package:date_format/date_format.dart';
 import 'package:diary/model/ScaleRoute.dart';
 import 'package:diary/model/Story.dart';
 import 'package:diary/screens/add_story.dart';
-import 'package:diary/screens/storyDetail.dart';
+import 'package:diary/screens/storydetail.dart';
 import 'package:diary/utils/database_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqlite_api.dart';
