@@ -20,7 +20,7 @@ class AddStoryState extends State<AddStory> {
   DateTime date = DateTime.now();
   @override
   Widget build(BuildContext context) {
-    timeDilation = 3;
+    timeDilation = 2;
     return Scaffold(
         body: SizedBox.expand(
             child: Container(

@@ -1,6 +1,7 @@
 import 'package:diary/model/GlobalData.dart';
 import 'package:diary/model/PhotoHero.dart';
 import 'package:diary/model/Story.dart';
+import 'package:diary/screens/home_page.dart';
 import 'package:diary/utils/database_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -132,12 +133,9 @@ class SaveStoryState extends State {
   }
 
   void saveStory(BuildContext context) async {
-    debugPrint('before assign');
 
     story = new Story(GlobalData.title, GlobalData.date, GlobalData.feeling,
         GlobalData.reason, GlobalData.note);
-
-    debugPrint('second');
 
     debugPrint(story.title);
     debugPrint(story.feeling);
@@ -147,14 +145,13 @@ class SaveStoryState extends State {
 
     int result = await databaseHelper.insertStory(story);
     if (result != 0) {
-      showSnackBar(context, 'Story is Successfully added');
+      // showSnackBar(context, 'Story is Successfully added');
+      Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
     }
   }
 
   void showSnackBar(context, msg) {
     SnackBar snackbar = SnackBar(content: Text(msg));
-    debugPrint('before snack');
     Scaffold.of(context).showSnackBar(snackbar);
-    debugPrint('after snack');
   }
 }

@@ -104,7 +104,9 @@ class NoteState extends State<Note> {
                           'No Thanks',
                           style: TextStyle(color: Colors.white, fontSize: 16),
                         ),
-                        onPressed: () {}),
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => SaveStory()));
+                        }),
                   )),
               Visibility(
                 visible: textBoxVisibility,
