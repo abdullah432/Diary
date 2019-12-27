@@ -112,7 +112,8 @@ class HomePageState extends State<HomePage> {
                             )),
                         FlatButton(
                           onPressed: () {
-                            deleteActiveStory(storyList);
+                            showDeleteAlert(storyList);
+                            // deleteActiveStory(storyList);
                             // showSnackBar(context, 'Story is successfully Deleted');
                           },
                           child: Icon(
@@ -294,5 +295,22 @@ class HomePageState extends State<HomePage> {
         });
       });
     });
+  }
+
+  void showDeleteAlert(Story story) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: new Text('Delete'),
+            content: Text("Are You sure you want to delete this story"),
+            actions: <Widget>[
+              FlatButton(child: Text('CANCEL'), onPressed: () {/*nothing happed*/},),
+              FlatButton(child: Text('OK'), onPressed: () {
+                deleteActiveStory(story);
+              },)
+            ],
+          );
+        });
   }
 }
