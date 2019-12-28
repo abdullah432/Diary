@@ -15,21 +15,22 @@ s
 
 # Screenshots
 ### Home Page
-<img src='screenshots/home.png' width="400" height="800">
+<img src='screenshots/home.png' width="360" height="640">
 
 ### Add Story Pages
-<img src='screenshots/addstory.png'>
-<img src='screenshots/addstory2.png'>
-<img src='screenshots/addstory3.png'>
-<img src='screenshots/addstory4.png'>
-<img src='screenshots/addstory5.png'>
-<img src='screenshots/addstory6.png'>
-<img src='screenshots/addstory7.png'>
+<img src='screenshots/addstory.png'
+width="360" height="640">
+<img src='screenshots/addstory2.png' width="360" height="640">
+<img src='screenshots/addstory3.png' width="360" height="640">
+<img src='screenshots/addstory4.png' width="360" height="640">
+<img src='screenshots/addstory5.png' width="360" height="640">
+<img src='screenshots/addstory6.png' width="360" height="640">
+<img src='screenshots/addstory7.png' width="360" height="640">
 
 ### Story
-<img src='screenshots/story.png'>
+<img src='screenshots/story.png' width="360" height="640">
 
 ### Delete Alert
-<img src='screenshots/deletealert.png'>
+<img src='screenshots/deletealert.png' width="360" height="640">
 
 
