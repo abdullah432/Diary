@@ -15,7 +15,7 @@ s
 
 # Screenshots
 ### Home Page
-<img src='screenshots/home.png'>
+<img src='screenshots/home.png' width="400" height="800">
 
 ### Add Story Pages
 <img src='screenshots/addstory.png'>
