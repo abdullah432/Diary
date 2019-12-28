@@ -18,8 +18,7 @@ s
 <img src='screenshots/home.png' width="360" height="640">
 
 ### Add Story Pages
-<img src='screenshots/addstory.png'
-width="360" height="640">
+<img src='screenshots/addstory.png' width="360" height="640">
 
 ### Add Story Page 2
 <img src='screenshots/addstory2.png' width="360" height="640">
