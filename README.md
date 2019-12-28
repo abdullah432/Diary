@@ -23,7 +23,7 @@ width="360" height="640">
 
 <img src='screenshots/addstory2.png' width="360" height="640">
 
-<img src='screenshots/addstory3.png' width="360" height="640">
+<img src="screenshots/addstory3.png" width="360" height="640">
 
 <img src='screenshots/addstory4.png' width="360" height="640">
 
