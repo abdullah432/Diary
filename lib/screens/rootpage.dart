@@ -1,5 +1,5 @@
 import 'package:diary/screens/home_page.dart';
-import 'package:diary/screens/settingpage.dart';
+import 'package:diary/screens/newUserPage.dart';
 import 'package:diary/utils/constant.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -18,26 +18,17 @@ class RootPageState extends State<RootPage> {
   @override
   void initState() {
     //if user name found that mean user already set his/her name and redirect to home_page
-    checkUserName();
+    checkUserAccount();
     super.initState();
   }
 
-  checkUserName() async {
-    final prefs = await SharedPreferences.getInstance();
-    final username = prefs.getString('name') ?? '';
-    final colorIndex = prefs.getInt('colorIndex') ?? 0;
-    //Now initialize selectedColor
-    Constant.selectedColor = Constant.listOfColors[colorIndex];
-    Constant.name = username;
-
-    if (username.isNotEmpty)
-      userfound = true;
-    else
-      userfound = false;
-
-    setState(() {
-      loadingInProgress = false;
-    });
+  checkUserAccount() async {
+    userfound = await Constant.checkUserAccount();
+    if (userfound) {
+      setState(() {
+        loadingInProgress = false;
+      });
+    }
   }
 
   @override
@@ -45,6 +36,6 @@ class RootPageState extends State<RootPage> {
     return Scaffold(
         body: loadingInProgress
             ? Center(child: CircularProgressIndicator())
-            : (userfound ? HomePage() : SettingPage()));
+            : (userfound ? HomePage() : NewUserPage()));
   }
 }

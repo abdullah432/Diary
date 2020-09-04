@@ -5,7 +5,6 @@ import 'package:diary/screens/feeling.dart';
 import 'package:diary/utils/constant.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 
 class AddStory extends StatefulWidget {
@@ -18,17 +17,6 @@ class AddStory extends StatefulWidget {
 class AddStoryState extends State<AddStory> {
   final minimumPadding = 5.0;
   DateTime date = DateTime.now();
-
-  String greeting() {
-  var hour = DateTime.now().hour;
-  if (hour < 12) {
-    return 'Morning';
-  }
-  if (hour < 17) {
-    return 'Afternoon';
-  }
-  return 'Evening';
-}
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +45,7 @@ class AddStoryState extends State<AddStory> {
                 width: 80,
               ),
             ),
-            Text('Good ${greeting()} ${Constant.name}',
+            Text('Good ${Constant.greeting()} ${Constant.name}',
                 style: TextStyle(
                     fontSize: 22,
                     color: Colors.white,

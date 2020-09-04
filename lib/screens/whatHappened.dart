@@ -1,23 +1,24 @@
 import 'package:diary/model/GlobalData.dart';
 import 'package:diary/model/PhotoHero.dart';
+import 'package:diary/screens/note.dart';
 import 'package:diary/screens/saveStory.dart';
 import 'package:diary/utils/constant.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Note extends StatefulWidget {
+class WhatHappened extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return NoteState();
+    return WhatHappenedState();
   }
 }
 
-class NoteState extends State<Note> {
+class WhatHappenedState extends State<WhatHappened> {
   double minimumPadding = 5.0;
   bool buttonVisibility = true;
   bool textBoxVisibility = false;
 
-  TextEditingController noteController = TextEditingController();
+  TextEditingController whatHappenedController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +63,7 @@ class NoteState extends State<Note> {
                   child: Align(
                     alignment: Alignment.topLeft,
                     child: Text(
-                      'Would you like to add some note?',
+                      'Would you like to elaborate on what happened?',
                       style: TextStyle(color: Colors.white, fontSize: 22.0),
                     ),
                   )),
@@ -106,7 +107,7 @@ class NoteState extends State<Note> {
                           style: TextStyle(color: Colors.white, fontSize: 16),
                         ),
                         onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => SaveStory()));
+                          navigateToNoteScreen();
                         }),
                   )),
               Visibility(
@@ -115,17 +116,17 @@ class NoteState extends State<Note> {
                   padding: EdgeInsets.only(
                       left: minimumPadding * 5, right: minimumPadding * 4),
                   child: TextField(
-                    controller: noteController,
+                    controller: whatHappenedController,
                     maxLines: 15,
                     decoration: InputDecoration(
                       border: new OutlineInputBorder(
                           borderSide: new BorderSide(color: Colors.teal)),
                       hintStyle: TextStyle(color: Colors.white70),
-                      hintText: 'Add some notes ...',
+                      hintText: 'Today was ${GlobalData.feeling} because ...',
                     ),
                     style: TextStyle(color: Colors.white, fontSize: 15),
                     onChanged: (value){
-                      GlobalData.note = noteController.text;
+                      GlobalData.whatHappened = whatHappenedController.text;
                     },
                   ),
                 ),
@@ -136,7 +137,7 @@ class NoteState extends State<Note> {
                     alignment: Alignment.topRight,
                     child: FlatButton(
                         onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => SaveStory()));
+                          navigateToNoteScreen();
                         },
                         child: RotatedBox(
                           quarterTurns: 1,
@@ -149,6 +150,10 @@ class NoteState extends State<Note> {
             ],
           ),
         )));
+  }
+
+  navigateToNoteScreen() {
+Navigator.push(context, MaterialPageRoute(builder: (context) => Note()));
   }
 
   void moveToLastScreen() {

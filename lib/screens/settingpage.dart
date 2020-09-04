@@ -14,27 +14,16 @@ class SettingPage extends StatefulWidget {
 }
 
 class SettingPageState extends State<SettingPage> {
-  double initialHeight = 0.0;
-  double maxHeight = 75.0;
-  double normalHeight = 70.0;
-  double logoHeight;
-  Duration duration = Duration(milliseconds: 590);
-  //Typing text should show after logo animation complete
-  bool startTyping = false;
-  bool showWidgets = false;
   TextEditingController nameController = TextEditingController();
   FocusNode _focusNode = FocusNode();
   final _formKey = GlobalKey<FormState>();
   //selected color index will be saved and in root page will be retrieve and
   //selectedColor will be initialize with the help of this index from list of colors
-  int colorIndex = 0;
+  int colorIndex = -1;
 
   @override
   void initState() {
-    logoHeight = initialHeight;
-    Future.delayed(Duration(milliseconds: 80), () {
-      startLogoAnimation();
-    });
+    nameController.text = Constant.name;
     super.initState();
   }
 
@@ -43,41 +32,6 @@ class SettingPageState extends State<SettingPage> {
     nameController.dispose();
     _focusNode.dispose();
     super.dispose();
-  }
-
-  startLogoAnimation() {
-    setState(() {
-      logoHeight = maxHeight;
-      Future.delayed(Duration(milliseconds: 600), () {
-        logozoomOutAnimation();
-      });
-    });
-  }
-
-  logozoomOutAnimation() {
-    setState(() {
-      duration = Duration(milliseconds: 170);
-      logoHeight = normalHeight;
-      Future.delayed(Duration(milliseconds: 230), () {
-        startTypingAnimation();
-      });
-    });
-  }
-
-  startTypingAnimation() {
-    setState(() {
-      startTyping = true;
-      //start typing animation will take almost 1000 miliseconds
-      Future.delayed(Duration(seconds: 4), () {
-        showOtherWidgets();
-      });
-    });
-  }
-
-  showOtherWidgets() {
-    setState(() {
-      showWidgets = true;
-    });
   }
 
   @override
@@ -93,123 +47,89 @@ class SettingPageState extends State<SettingPage> {
             key: _formKey,
             child: Container(
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(
-                    height: 50.0,
+                    height: 80.0,
                   ),
+                  // Center(
+                  //   child: Container(
+                  //     height: 70.0,
+                  //     child: Center(
+                  //       child: Image(
+                  //         image: AssetImage('images/logo.png'),
+                  //       ),
+                  //     ),
+                  //   ),
+                  // ),
+                  // SizedBox(
+                  //   height: 40.0,
+                  // ),
                   Center(
-                    child: AnimatedContainer(
-                      height: logoHeight,
-                      duration: duration,
-                      curve: Curves.easeIn,
-                      child: Center(
-                        child: Image(
-                          image: AssetImage('images/logo.png'),
-                        ),
+                    child: Container(
+                      // width: MediaQuery.of(context).size.width - 70,
+                      child: Text(
+                        'SETTING',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 28,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Raleway'),
                       ),
                     ),
                   ),
                   SizedBox(
-                    height: 40.0,
+                    height: 60.0,
                   ),
-                  startTyping
-                      ? Center(
-                          child: Container(
-                            width: MediaQuery.of(context).size.width - 70,
-                            child: TyperAnimatedTextKit(
-                              speed: Duration(milliseconds: 90),
-                              text: ["Keep a diary and someday it'll keep you"],
-                              textStyle: TextStyle(
-                                  fontSize: 27.0,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white),
-                              displayFullTextOnTap: true,
-                              isRepeatingAnimation: false,
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        )
-                      : Container(),
-                  SizedBox(
-                    height: 40.0,
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width - 70,
-                    child: AnimatedOpacity(
-                      // If the widget is visible, animate to 0.0 (invisible).
-                      // If the widget is hidden, animate to 1.0 (fully visible).
-                      opacity: showWidgets ? 1.0 : 0.0,
-                      duration: Duration(milliseconds: 1000),
-                      // The green box must be a child of the AnimatedOpacity widget.
-                      child: TextFormField(
-                        // The validator receives the text that the user has entered.
-                        validator: (value) {
-                          if (value.isEmpty) {
-                            return 'Please enter some text';
-                          }
-                          return null;
-                        },
-                        style: TextStyle(color: Colors.white70),
-                        controller: nameController,
-                        focusNode: _focusNode,
-                        decoration: InputDecoration(
-                          hintText: "What do your friends call you",
-                          labelText: "Your Name",
-                          labelStyle:
-                              TextStyle(fontSize: 25, color: Colors.white),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black26),
-                          ),
+                  TextFormField(
+                      // The validator receives the text that the user has entered.
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return 'Please enter some text';
+                        }
+                        return null;
+                      },
+                      style: TextStyle(color: Colors.white, fontSize: 22.0),
+                      controller: nameController,
+                      focusNode: _focusNode,
+                      decoration: InputDecoration(
+                        contentPadding: const EdgeInsets.only(left: 10.0),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black26),
                         ),
-                      ),
-                    ),
-                  ),
+                      )),
                   SizedBox(
                     height: 40.0,
                   ),
                   Container(
                     height: 110.0,
-                    child: AnimatedOpacity(
-                      // If the widget is visible, animate to 0.0 (invisible).
-                      // If the widget is hidden, animate to 1.0 (fully visible).
-                      opacity: showWidgets ? 1.0 : 0.0,
-                      duration: Duration(milliseconds: 1000),
-                      // The green box must be a child of the AnimatedOpacity widget.
-                      child: ListView.builder(
-                        itemBuilder: buildContainer,
-                        itemCount: 5,
-                        scrollDirection: Axis.horizontal,
-                      ),
+                    child: ListView.builder(
+                      itemBuilder: buildContainer,
+                      itemCount: 5,
+                      scrollDirection: Axis.horizontal,
                     ),
                   ),
                   SizedBox(
                     height: 40.0,
                   ),
-                  AnimatedOpacity(
-                    // If the widget is visible, animate to 0.0 (invisible).
-                    // If the widget is hidden, animate to 1.0 (fully visible).
-                    opacity: showWidgets ? 1.0 : 0.0,
-                    duration: Duration(milliseconds: 1000),
-                    // The green box must be a child of the AnimatedOpacity widget.
-                    child: Padding(
-                      padding: const EdgeInsets.all(2.0),
-                      child: RaisedButton(
-                        onPressed: () {
-                          saveUserNameAndColor();
-                        },
-                        shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(15.0))),
-                        child: Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: Text(
-                            'Done',
-                            style: TextStyle(fontSize: 20.0),
-                          ),
+                  Padding(
+                    padding: const EdgeInsets.all(2.0),
+                    child: RaisedButton(
+                      onPressed: () {
+                        saveUserNameAndColor();
+                      },
+                      shape: RoundedRectangleBorder(
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(15.0))),
+                      child: Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Text(
+                          'Done',
+                          style: TextStyle(fontSize: 20.0),
                         ),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -256,8 +176,15 @@ class SettingPageState extends State<SettingPage> {
     if (_formKey.currentState.validate()) {
       // obtain shared preferences
       final prefs = await SharedPreferences.getInstance();
-      prefs.setString('name', nameController.text);
-      prefs.setInt('colorIndex', colorIndex);
+      if (Constant.name != nameController.text) {
+        prefs.setString('name', nameController.text);
+        Constant.name = nameController.text;
+      }
+      //if colorindex not equal to -1 that means user select new color
+      if (colorIndex != -1) {
+        prefs.setInt('colorIndex', colorIndex);
+        Constant.selectedColor = Constant.listOfColors[colorIndex];
+      }
 
       //now navigate to homepage
       navigateToHomePage();
@@ -265,6 +192,7 @@ class SettingPageState extends State<SettingPage> {
   }
 
   navigateToHomePage() {
-    Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage()));
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => HomePage()));
   }
 }

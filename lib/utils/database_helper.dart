@@ -9,12 +9,13 @@ class DatabaseHelper {
   Database _database;
   DatabaseHelper.createInstance();
 
-  String storyTable = 'storyTable';
+  String storyTable = 'diaryTable';
   String colId = 'id';
   String colTitle = 'title';
   String colDate = 'date';
   String colFeeling = 'feeling';
   String colReason = 'reason';
+  String colWhatHappened = 'whatHappened';
   String colNote = 'note';
 
   //make it singleton object
@@ -48,7 +49,7 @@ class DatabaseHelper {
   void createDb(Database db, int newVersion) async {
     await db.execute(
         'CREATE TABLE $storyTable($colId INTEGER PRIMARY KEY AUTOINCREMENT,'
-        '$colTitle TEXT,$colDate TEXT,$colFeeling Text, $colReason INTEGER, $colNote TEXT)');
+        '$colTitle TEXT,$colDate TEXT,$colFeeling Text, $colReason INTEGER, $colWhatHappened TEXT, $colNote TEXT)');
   }
 
   //Fetch operation. Get all note object from database

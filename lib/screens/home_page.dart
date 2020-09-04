@@ -1,7 +1,7 @@
 import 'package:date_format/date_format.dart';
-import 'package:diary/model/ScaleRoute.dart';
 import 'package:diary/model/Story.dart';
 import 'package:diary/screens/add_story.dart';
+import 'package:diary/screens/settingpage.dart';
 import 'package:diary/screens/storydetail.dart';
 import 'package:diary/utils/constant.dart';
 import 'package:diary/utils/database_helper.dart';
@@ -47,7 +47,9 @@ class HomePageState extends State<HomePage> {
     }
 
     return Scaffold(
-      body: PageView.builder(
+        body: Stack(children: [
+      //PageView
+      PageView.builder(
           scrollDirection: Axis.horizontal,
           controller: pageController,
           itemCount: count + 2,
@@ -67,7 +69,20 @@ class HomePageState extends State<HomePage> {
                   storyList[currentIndex - 2], active, currentIndex);
             }
           }),
-    );
+      //setting button
+      Positioned(
+          top: 35.0,
+          right: 12.0,
+          child: GestureDetector(
+              onTap: () {
+                navigateToSettingPage();
+              },
+              child: Icon(
+                Icons.settings,
+                color: Constant.selectedColor,
+                size: 30,
+              ))),
+    ]));
   }
 
   Widget storyPages(Story storyList, bool active, currentIndex) {
@@ -93,7 +108,7 @@ class HomePageState extends State<HomePage> {
                   borderRadius: BorderRadius.circular(15),
                   image: DecorationImage(
                     fit: BoxFit.cover,
-                    image: getImageAsset(storyList),
+                    image: Constant.getImageAsset(storyList),
                   ),
                 ),
                 child: Column(
@@ -107,7 +122,9 @@ class HomePageState extends State<HomePage> {
                               child: Container(
                                 width: 80,
                                 child: Text(
-                                  formatDate(getActiveStoryDate(storyList),
+                                  formatDate(
+                                      Constant.getActiveStoryDate(
+                                          storyList.date),
                                       [dd, ' ', MM, ' ', yyyy]),
                                   style: TextStyle(
                                       color: Colors.white,
@@ -142,39 +159,6 @@ class HomePageState extends State<HomePage> {
                 ),
               ),
             )));
-  }
-
-  AssetImage getImageAsset(Story storyList) {
-    switch (storyList.reason) {
-      case 'Traveling':
-        AssetImage assetImage = AssetImage('images/iceforestroad.jpg');
-        return assetImage;
-        break;
-      case 'Education':
-        AssetImage assetImage = AssetImage('images/study.jpg');
-        return assetImage;
-        break;
-      case 'Family':
-        AssetImage assetImage = AssetImage('images/family2.jpg');
-        return assetImage;
-        break;
-      case 'Food':
-        AssetImage assetImage = AssetImage('images/food.jpg');
-        return assetImage;
-        break;
-      case 'Work':
-        AssetImage assetImage = AssetImage('images/work2.jpg');
-        return assetImage;
-        break;
-      case 'Friends':
-        AssetImage assetImage = AssetImage('images/friends.jpg');
-        return assetImage;
-        break;
-      default:
-        AssetImage assetImage = AssetImage('images/milky-way.jpg');
-        return assetImage;
-        break;
-    }
   }
 
   Widget introductryPage() {
@@ -288,9 +272,9 @@ class HomePageState extends State<HomePage> {
         context, MaterialPageRoute(builder: (context) => AddStory()));
   }
 
-  DateTime getActiveStoryDate(Story storyList) {
-    DateTime date = DateTime.parse(storyList.date);
-    return date;
+  navigateToSettingPage() {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => SettingPage()));
   }
 
   String getActiveStoryTitle(Story storyList) {

@@ -3,5 +3,6 @@ class GlobalData {
   static String date = '';
   static String feeling = '';
   static String reason = '';
+  static String whatHappened = '';
   static String note = '';
 }

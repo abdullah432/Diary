@@ -1,8 +1,10 @@
 import 'package:diary/model/GlobalData.dart';
 import 'package:diary/model/PhotoHero.dart';
 import 'package:diary/screens/note.dart';
+import 'package:diary/screens/whatHappened.dart';
 import 'package:diary/utils/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_icons/flutter_icons.dart';
 
 class ReasonPage extends StatefulWidget {
   @override
@@ -25,14 +27,14 @@ class ReasonPageState extends State<ReasonPage> {
     "Others"
   ];
   final reasonsArrayIcon = [
-    Icons.add,
+    FlutterIcons.heart_ant,
     Icons.work,
     Icons.home,
-    Icons.local_airport,
-    Icons.fastfood,
+    FlutterIcons.route_faw5s,
+    FlutterIcons.utensils_faw5s,
     Icons.edit,
-    Icons.explore,
-    Icons.child_friendly,
+    FlutterIcons.walking_faw5s,
+    Icons.person,
     Icons.more_horiz
   ];
 
@@ -78,7 +80,7 @@ class ReasonPageState extends State<ReasonPage> {
               child: Align(
                 alignment: Alignment.topLeft,
                 child: Text(
-                  'Nice - what made today (super awesome)?',
+                  'What made today ${GlobalData.feeling}?',
                   style: TextStyle(color: Colors.white, fontSize: 21.0),
                 ),
               )),
@@ -140,6 +142,6 @@ class ReasonPageState extends State<ReasonPage> {
   }
 
   void navigateToNextPage() {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => Note()));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => WhatHappened()));
   }
 }
