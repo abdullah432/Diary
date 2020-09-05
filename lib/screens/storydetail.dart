@@ -26,7 +26,8 @@ class StoryDetailState extends State<StoryDetail> {
       children: [
         //Full screen image
         Hero(
-          tag: 'hero$currentIndex',
+          tag: 'd',
+          // tag: 'hero$currentIndex',
           child: Container(
               color: Colors.black,
               child: SizedBox.expand(

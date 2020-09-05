@@ -23,12 +23,21 @@ class RootPageState extends State<RootPage> {
   }
 
   checkUserAccount() async {
-    userfound = await Constant.checkUserAccount();
-    if (userfound) {
-      setState(() {
-        loadingInProgress = false;
-      });
-    }
+    final prefs = await SharedPreferences.getInstance();
+    final username = prefs.getString('name') ?? '';
+    final colorIndex = prefs.getInt('colorIndex') ?? 0;
+    //Now initialize selectedColor
+    Constant.selectedColor = Constant.listOfColors[colorIndex];
+    Constant.name = username;
+
+    if (username.isNotEmpty)
+      userfound = true;
+    else
+      userfound = false;
+
+    setState(() {
+      loadingInProgress = false;
+    });
   }
 
   @override

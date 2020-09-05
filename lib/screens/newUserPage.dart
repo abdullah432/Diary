@@ -258,6 +258,9 @@ class NewUserPageState extends State<NewUserPage> {
       final prefs = await SharedPreferences.getInstance();
       prefs.setString('name', nameController.text);
       prefs.setInt('colorIndex', colorIndex);
+      //update data
+      Constant.name = nameController.text;
+      Constant.selectedColor = Constant.listOfColors[colorIndex];
 
       //now navigate to homepage
       navigateToHomePage();
